@@ -1,0 +1,11 @@
+@startuml
+User -> Login: 输入账号密码
+Login -> Database: 验证信息
+alt 验证成功
+    Database --> Login: 返回 Token
+    Login --> User: 登录成功
+else 验证失败
+    Database --> Login: 返回错误
+    Login --> User: 登录失败
+end
+@enduml

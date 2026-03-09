@@ -9,7 +9,6 @@
 6. 算法练习-leetcode：排序、查找、动态规划、贪心、dfs、bfs、线段树、多线程
 
 7. 数据库:mysql
-    7.1:
 8. redis
 9. 搜索:es
 10. mq：kafka、rocketmq
@@ -17,4 +16,8 @@
 12. oss存储：minio
 13. docker、k8s
 14. jenkis
-15.
+15. 23种设计模式
+    1. 按功能如何划分
+    2. 具体使用场景，结合实际
+
+16. 总结项目亮点：
