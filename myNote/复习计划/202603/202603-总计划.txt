@@ -1,0 +1,20 @@
+全部任务：                                                                                           时间规划：工作日上班两个小时、下班一个小时回家整理， 或者上班一个小时
+1. java集合框架
+2. io: 基础io，nio,零拷贝  搞清楚io的本质 系统cache相关
+3. 多线程：线程池、并发、锁、死锁
+
+4. jvm相关：类加载机制、jvm内存模型、jvm调优、gc流程、gc算法、gc类型、垃圾回收器类型 gc日志分析
+5. 应用框架：spring、springboot、springcloud、nacos、配置中心、gateway、security
+
+6. 算法练习-leetcode：排序、查找、动态规划、贪心、dfs、bfs、线段树、多线程
+
+7. 数据库:mysql
+    7.1:
+8. redis
+9. 搜索:es
+10. mq：kafka、rocketmq
+11. 定时任务:xxljob
+12. oss存储：minio
+13. docker、k8s
+14. jenkis
+15.
