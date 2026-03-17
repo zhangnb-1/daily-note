@@ -1,0 +1,26 @@
+编程语言：java
+    框架：spring、springboot、springcloud
+
+
+
+网络协议： http.tcp
+
+关系型数据库: mysql,oracle
+
+消息中间件：kafka,rocketmq
+
+缓存：redis,springcache
+
+搜索引擎： es
+
+代码推送：git
+
+定时任务：xxljob
+
+运维相关：
+    docker      部署
+    k8s         部署
+    jenkis  -  打包、启动
+    jumpServer -  堡垒机、安全
+
+
