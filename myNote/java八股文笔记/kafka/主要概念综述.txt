@@ -1,0 +1,31 @@
+Kafka 核心概念简介
+1. Broker
+Kafka 集群中的服务器节点，负责接收生产者发送的消息、为消费者提供消息服务以及存储消息。一个 Kafka 集群由多个 Broker 组成。
+2. Topic
+消息的逻辑分类。生产者发送的消息都要指定一个 Topic，消费者通过订阅 Topic 来接收相关消息，类似传统消息队列中的队列概念，但 Kafka 的 Topic 更具灵活性。
+3. Partition
+分区，一个 Topic 可以分为多个 Partition，每个 Partition 是一个有序的消息队列。消息在 Partition 中是顺序追加写入的，这有助于提高消息处理的效率和顺序性保证。不同 Partition 之间的消息是无序的。
+4. Offset
+偏移量，在每个 Partition 中，每条消息都有一个唯一的 Offset，用于标识消息在 Partition 中的位置。消费者通过记录 Offset 来标记已消费的位置，以便下次从正确的位置继续消费。
+5. Producer
+生产者，负责向 Kafka 集群的 Topic 发送消息。可以是应用程序中产生数据的组件，将数据包装成 Kafka 消息发送到指定的 Topic。
+6. Consumer
+消费者，从 Kafka 集群的 Topic 中读取消息。消费者通过订阅 Topic 来获取相关消息，并进行相应的处理。
+7. Consumer Group
+消费者组，由多个消费者实例组成。一个 Consumer Group 中的消费者共同消费一个或多个 Topic 的消息，每个 Partition 只会被组内的一个消费者消费，从而实现负载均衡和并行消费。不同 Consumer Group 之间相互独立，每个 Group 都有自己的消费位点（Offset）。
+8. Replica
+副本，为了保证数据的可靠性和高可用性，Kafka 为每个 Partition 创建多个 Replica。这些副本分布在不同的 Broker 上，其中一个副本被选举为 Leader，其他副本为 Follower。
+9. Leader Replica
+领导者副本，每个 Partition 的 Replica 集合中有一个 Leader Replica。生产者发送的消息和消费者读取的消息都由 Leader Replica 负责处理，Follower Replica 会从 Leader Replica 同步数据。
+10. Follower Replica
+跟随者副本，从 Leader Replica 同步数据，与 Leader Replica 保持数据一致。当 Leader Replica 出现故障时，其中一个 Follower Replica 会被选举为新的 Leader Replica，以保证服务的连续性。
+11. Zookeeper
+Kafka 依赖 Zookeeper 来管理集群的元数据信息，如 Broker 的注册与发现、Topic 的创建与配置、Partition 的分配、Leader 的选举等。虽然在 Kafka 2.8.0 及之后版本，Kafka 可以在无 Zookeeper 的情况下运行，但之前版本 Zookeeper 是 Kafka 架构的重要组成部分。
+12. Segment
+段，Partition 在物理上由多个 Segment 组成，每个 Segment 对应一个日志文件和一个索引文件。这种分段存储的方式便于对消息进行管理和清理，比如按照一定的策略删除旧的 Segment 文件。
+13. Log
+日志，Kafka 使用日志结构来存储消息，消息按顺序追加到日志文件中。每个 Partition 都有对应的日志，日志文件由多个 Segment 组成。
+14. Retention Policy
+保留策略，定义了 Kafka 如何保留消息。常见的保留策略有基于时间（例如保留最近 7 天的消息）和基于大小（例如保留 1GB 的消息数据），超过设定的时间或大小限制，旧的消息会被删除。
+15. Compression
+压缩，Kafka 支持对消息进行压缩，以减少网络传输和磁盘存储的开销。常见的压缩算法如 Gzip、Snappy、LZ4 等，生产者可以选择对发送的消息进行压缩，Broker 存储压缩后的消息，消费者获取消息后再进行解压缩。
