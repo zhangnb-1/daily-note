@@ -1,4 +1,18 @@
 broker:
-    kafka集群中每个运行的实力都是一个broker
+    kafka集群中每个运行的实例都是一个broker
 
-每个topic会根据broker
+topic+partition:
+    每个topic可设置的逻辑数据分区，类似es的分片和redis的cluster
+    每个partiton内的消息可以保证顺序性，如果想保证消息的顺序，可以指定partition
+        比如每个taskId的多个消息如需保证顺序执行，可以根据taskId哈希到同一个partition
+
+consumer+consumerGroup:消费者、消费者组
+    consumerGroup - topic
+        topic的每个partition绑定到一个consumerGroup里的一个consumer
+        consumer数量<partition数量时，会有多个partition绑定到同一个consumer
+        consumer数量>partition数量时, 会出现多余的consumer空闲等待的情况，而不是多个consumer去消费同一个partition
+    多个consumerGroup 绑定到同一个topic:
+        topic会给每个组保存一个ofset,如果有两个consumerGroup绑定同一个topic，那么该topic的一条消息会被这两个group各自消费一次，而不是两个组之间形成竞争关系
+
+
+
