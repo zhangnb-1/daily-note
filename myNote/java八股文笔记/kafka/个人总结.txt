@@ -1,4 +1,5 @@
 broker:
     kafka集群中每个运行的实力都是一个broker
 
-每个topic会根据broker
+topic如何分配partition到broker
+
