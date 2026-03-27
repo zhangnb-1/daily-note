@@ -1,0 +1,5 @@
+静态方法工具类 可以用abstract修饰，表示该类无法直接创建
+    public abstract class StringUtils
+    比私有化构造方法更常用一点，spring框架常见
+
+

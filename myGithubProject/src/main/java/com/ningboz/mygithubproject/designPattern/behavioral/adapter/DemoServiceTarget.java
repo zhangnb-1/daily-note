@@ -6,6 +6,6 @@ package com.ningboz.mygithubproject.designPattern.behavioral.adapter;
  * @date: 2026/3/25
  * @description:
  */
-public interface DemoTarget {
+public interface DemoServiceTarget {
     void targetMethod();
 }

@@ -6,8 +6,8 @@ package com.ningboz.mygithubproject.designPattern.behavioral;
  * @date: 2026/3/25
  * @description:
  */
-public class Demo {
+public class DemoService {
     public void originMethod(){
-        System.out.println("originMethod");
+        System.out.println("原接口：originMethod");
     }
 }
