@@ -1,4 +1,4 @@
-package com.ningboz.mygithubproject.designPattern.behavioral.zhuangshi;
+package com.ningboz.mygithubproject.designPattern.structer.zhuangshi;
 
 import java.util.List;
 

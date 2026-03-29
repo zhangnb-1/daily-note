@@ -1,4 +1,4 @@
-package com.ningboz.mygithubproject.designPattern.behavioral;
+package com.ningboz.mygithubproject.designPattern.structer;
 
 /**
  * @ClassName: Demo

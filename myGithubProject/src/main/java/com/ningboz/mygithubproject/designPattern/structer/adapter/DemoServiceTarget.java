@@ -1,4 +1,4 @@
-package com.ningboz.mygithubproject.designPattern.behavioral.adapter;
+package com.ningboz.mygithubproject.designPattern.structer.adapter;
 
 /**
  * @ClassName: DemoTarget

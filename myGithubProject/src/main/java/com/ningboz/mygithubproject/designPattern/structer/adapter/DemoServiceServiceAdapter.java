@@ -1,6 +1,6 @@
-package com.ningboz.mygithubproject.designPattern.behavioral.adapter;
+package com.ningboz.mygithubproject.designPattern.structer.adapter;
 
-import com.ningboz.mygithubproject.designPattern.behavioral.DemoService;
+import com.ningboz.mygithubproject.designPattern.structer.DemoService;
 
 /**
  * @ClassName: DemoAdapter
