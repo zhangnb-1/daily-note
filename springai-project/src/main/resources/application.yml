@@ -33,7 +33,8 @@ spring:
         #        base-url: https://api.minimaxi.com/v1/text/chatcompletion_v2 # 建议加上 /v1 后缀，这是标准 API 路径
         options:
           # 模型选择
-          model: qwen-plus
+#          model: qwen-plus
+          model: qwen3.5-plus
 #      embedding:
 #        api-key: ${spring.ai.minimax.chat.api-key} # 复用 Chat 的 Key
 #        base-url: ${spring.ai.minimax.chat.base-url}
