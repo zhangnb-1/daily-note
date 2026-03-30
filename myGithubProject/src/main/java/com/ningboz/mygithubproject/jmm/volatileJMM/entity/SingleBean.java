@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SingleBean {
     private static volatile SingleBean singleBean;
+    private static SingleBean singleBean2;
 
     private SingleBean(){}
 
@@ -23,5 +24,15 @@ public class SingleBean {
             }
         }
         return singleBean;
+    }
+
+    public SingleBean getInstance2(){
+        if(singleBean2 == null){
+            synchronized (this){
+                if(singleBean2 == null)
+                    singleBean2 = new SingleBean();
+            }
+        }
+        return singleBean2;
     }
 }

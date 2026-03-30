@@ -7,10 +7,25 @@ package com.ningboz.mygithubproject.jmm.volatileJMM;
  * @description:
  */
 public class Main {
-    private volatile static int num;
+    public static void main(String[] args) {
 
-    public void test(){
-        num+=1;
-        System.out.println(num);
+    }
+
+    private static void ifMethod(){
+        int i = 1,result=0;
+        if(i<100){
+            result+=i;
+            i++;
+        }
+        System.out.println(result);
+    }
+
+    private static void whereMethod(){
+        int i = 1,result=0;
+        while (i<100){
+            result+=i;
+            i++;
+        }
+        System.out.println(result);
     }
 }

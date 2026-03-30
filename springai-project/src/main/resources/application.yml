@@ -1,0 +1,43 @@
+#spring:
+#  application:
+#    name: springai-project
+#  ai:
+#    minimax:
+#      # 这里指定默认使用 minimax
+#      chat:
+#        api-key: sk-api-KFnRflDu0SSD8VbhsYN30pUn8o21JUV18xiiwPPxZks-7PDjCK3ZUP17_94C-VIF_4PHBmbmOp0SShSPP2xIYkiZ19jkKy9AVMde64OGiho8YzbKr7m0w6U
+#        # 可选：指定 Base URL
+##        base-url: https://api.minimax.chat/v1 # 建议加上 /v1 后缀，这是标准 API 路径
+##        base-url: https://api.minimaxi.com/v1/text/chatcompletion_v2 # 建议加上 /v1 后缀，这是标准 API 路径
+#        options:
+#          # 模型选择
+#          model: abab6.5g-chat
+##          model: M2-her
+#          # 温度：0-1
+#          temperature: 0.7
+#          # 生成最大 Token 数
+#          max-tokens: 2048
+#      embedding:
+#        api-key: ${spring.ai.minimax.chat.api-key} # 复用 Chat 的 Key
+#        base-url: ${spring.ai.minimax.chat.base-url}
+spring:
+  application:
+    name: springai-project
+  ai:
+    dashscope:
+      # 这里指定默认使用 minimax
+      api-key: sk-d3ff31a851264a839dede9a765d4b75f
+      chat:
+        # 可选：指定 Base URL
+        #        base-url: https://api.minimax.chat/v1 # 建议加上 /v1 后缀，这是标准 API 路径
+        #        base-url: https://api.minimaxi.com/v1/text/chatcompletion_v2 # 建议加上 /v1 后缀，这是标准 API 路径
+        options:
+          # 模型选择
+          model: qwen-plus
+#      embedding:
+#        api-key: ${spring.ai.minimax.chat.api-key} # 复用 Chat 的 Key
+#        base-url: ${spring.ai.minimax.chat.base-url}
+server:
+  port: 8080
+  servlet:
+    context-path: /ai
