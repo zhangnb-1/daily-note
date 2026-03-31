@@ -2,6 +2,7 @@ package com.ningboz.springaiproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @ClassName: SpringAiProjectApplication
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date: 2026/3/30
  * @description:
  */
+
 @SpringBootApplication
 public class SpringAiProjectApplication {
 

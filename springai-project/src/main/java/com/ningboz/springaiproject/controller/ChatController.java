@@ -2,6 +2,7 @@ package com.ningboz.springaiproject.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,16 +19,14 @@ import java.util.Map;
 @Controller
 @RequestMapping("/chat")
 public class ChatController {
-    private final ChatClient chatClient;
-
-    public ChatController(ChatClient.Builder chatClientBuilder) {
-        this.chatClient = chatClientBuilder.build();
-    }
+    @Autowired
+    private ChatClient.Builder chatClientBuilder;
+//    private ChatClient chatClient;
 
     @ResponseBody
     @GetMapping("/qwen")
     public String chatWithQWen(String message){
-        ChatClient.ChatClientRequestSpec prompt = chatClient.prompt();
+        ChatClient.ChatClientRequestSpec prompt = chatClientBuilder.build().prompt();
         String content = prompt.user(message).call().content();
         return content;
     }
@@ -48,7 +47,7 @@ public class ChatController {
     @GetMapping("/writePoetry")
     public String writePoetry(String message){
         String system = poetryTemplate.render(Map.of("message", message));
-        ChatClient.ChatClientRequestSpec prompt = chatClient.prompt()
+        ChatClient.ChatClientRequestSpec prompt = chatClientBuilder.build().prompt()
                 .system(system)
                 .user(message);
         String content = prompt.call().content();

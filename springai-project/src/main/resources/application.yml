@@ -21,6 +21,8 @@
 #        api-key: ${spring.ai.minimax.chat.api-key} # 复用 Chat 的 Key
 #        base-url: ${spring.ai.minimax.chat.base-url}
 spring:
+  main:
+    allow-circular-references: true
   application:
     name: springai-project
   ai:
@@ -40,5 +42,3 @@ spring:
 #        base-url: ${spring.ai.minimax.chat.base-url}
 server:
   port: 8080
-  servlet:
-    context-path: /ai
