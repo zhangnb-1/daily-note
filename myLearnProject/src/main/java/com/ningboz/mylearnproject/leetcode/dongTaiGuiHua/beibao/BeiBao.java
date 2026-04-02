@@ -1,4 +1,4 @@
-package com.ningboz.mylearnproject.leetcode.dongTaiGuiHua;
+package com.ningboz.mylearnproject.leetcode.dongTaiGuiHua.beibao;
 
 /**
  * @ClassName: BeiBao

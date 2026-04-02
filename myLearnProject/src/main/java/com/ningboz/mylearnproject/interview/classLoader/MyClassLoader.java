@@ -1,7 +1,5 @@
 package com.ningboz.mylearnproject.interview.classLoader;
 
-import sun.misc.Launcher;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
