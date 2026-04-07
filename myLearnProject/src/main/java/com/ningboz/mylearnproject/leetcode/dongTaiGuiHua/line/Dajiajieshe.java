@@ -13,6 +13,7 @@ public class Dajiajieshe {
 //        System.out.println(rob2(new int[]{2, 3, 2}));
         System.out.println(robNew());
 
+
     }
 
 

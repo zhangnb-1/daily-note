@@ -15,9 +15,9 @@
 
     <!-- 2. 修改为你的项目坐标 -->
     <groupId>com.ningboz</groupId>
-    <artifactId>springaiproject</artifactId>
+    <artifactId>springai-project</artifactId>
     <version>1.0.1-SNAPSHOT</version>
-    <name>springaiproject</name>
+    <name>springai-project</name>
     <description>Spring AI Project for Java Backend</description>
 
     <!-- 3. 属性配置 -->
