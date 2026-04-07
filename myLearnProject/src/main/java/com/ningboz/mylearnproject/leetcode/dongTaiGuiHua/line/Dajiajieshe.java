@@ -11,7 +11,8 @@ import java.util.*;
 public class Dajiajieshe {
     public static void main(String[] args) {
 //        System.out.println(rob2(new int[]{2, 3, 2}));
-        System.out.println(robNew());
+        TreeNode root = getRoot();
+        System.out.println(robNew(root));
 
 
     }
@@ -132,7 +133,7 @@ public class Dajiajieshe {
     }
 
     // 把tree展开为数组
-    public static int robNew(){
+    public static TreeNode getRoot(){
         TreeNode treeNode1 = new TreeNode(3);
         TreeNode treeNode2 = new TreeNode(4);
         TreeNode treeNode3 = new TreeNode(1);
@@ -144,10 +145,11 @@ public class Dajiajieshe {
         treeNode2.left = treeNode3;
         treeNode2.right = treeNode4;
         treeNode5.right = treeNode6;
-        return robNew(treeNode1);
+        return treeNode1;
     }
     public static int robNew(TreeNode root) {
-        return diguiRob(root,0,0);
+        int[] rob = diguiRob(root);
+        return Math.max(rob[0],rob[1]);
     }
 
     /**
@@ -169,25 +171,37 @@ public class Dajiajieshe {
         }
     }
 
-    /**
-     * 深度优先 搜索
-     * @param node 当前节点
-     * @param pre1
-     * @param pre2
-     * @return
-     */
-    private static int diguiRob(TreeNode node,int pre1,int pre2){
-        if(node == null) return pre1;
-        // 选当前节点 父节点不可选
-        // 不选当前节点
-        int cur = Math.max(node.val + pre2,pre1);
-        if(node.left!=null) {
-            pre1 = cur;
-            cur = diguiRob(node.left,cur,pre1);
+    // 树状动态规划
+    private static int[] diguiRob(TreeNode node){
+        int[] result = {0, 0};
+        if(node == null) return result;
 
+        int[] left = diguiRob(node.left);
+        int[] right = diguiRob(node.right);
+
+        result[0] = node.val + left[1] + right[1];
+        result[1] = Math.max(left[0],left[1]) + Math.max(right[0],right[1]);
+        return result;
+    }
+
+    // 空间优化版
+    static int yes,no;
+    private static void diguiRob2(TreeNode root){
+        if(root==null){
+            yes=0;
+            no=0;
+            return ;
         }
-        if(node.right!=null) cur = diguiRob(node.right,cur,pre1);
-        return cur;
+        int y=root.val;
+        int n=0;
+        diguiRob2(root.left);
+        y+=no;
+        n+=Math.max(no,yes);
+        diguiRob2(root.right);
+        y+=no;
+        n+=Math.max(no,yes);
+        yes=y;
+        no=n;
     }
 
 
@@ -203,5 +217,50 @@ public class Dajiajieshe {
           this.right = right;
       }
   }
+
+    /** 最小化最大值 : 多个单组group 每个group里面有个最大值， 求所有group最大值里 最小的那个值
+     *      现实含义：多种可能，每种可能里有多个缺点，最后选一种可能，其中最大的缺点值最小，主打保证一个均衡
+     *  反过来最大化最小：
+     *      现实含义： 一块木头做成木桶，在特定要求下，有多种裁剪方法，找到一种裁剪方法 使木桶的短板尽量长
+     *
+     * leetcode : 2560 打家劫舍4
+     * 沿街有一排连续的房屋。每间房屋内都藏有一定的现金。现在有一位小偷计划从这些房屋中窃取现金。
+     *
+     * 由于相邻的房屋装有相互连通的防盗系统，所以小偷 不会窃取相邻的房屋 。
+     *
+     * 小偷的 窃取能力 定义为他在窃取过程中能从单间房屋中窃取的 最大金额 。
+     *
+     * 给你一个整数数组 nums 表示每间房屋存放的现金金额。形式上，从左起第 i 间房屋中放有 nums[i] 美元。
+     *
+     * 另给你一个整数 k ，表示窃贼将会窃取的 最少 房屋数。小偷总能窃取至少 k 间房屋。
+     *
+     * 返回小偷的 最小 窃取能力。
+     *
+     *
+     *
+     * 示例 1：
+     *
+     * 输入：nums = [2,3,5,9], k = 2
+     * 输出：5
+     * 解释：
+     * 小偷窃取至少 2 间房屋，共有 3 种方式：
+     * - 窃取下标 0 和 2 处的房屋，窃取能力为 max(nums[0], nums[2]) = 5 。
+     * - 窃取下标 0 和 3 处的房屋，窃取能力为 max(nums[0], nums[3]) = 9 。
+     * - 窃取下标 1 和 3 处的房屋，窃取能力为 max(nums[1], nums[3]) = 9 。
+     * 因此，返回 min(5, 9, 9) = 5 。
+     * 示例 2：
+     *
+     * 输入：nums = [2,7,9,3,1], k = 2
+     * 输出：2
+     * 解释：共有 7 种窃取方式。窃取能力最小的情况所对应的方式是窃取下标 0 和 4 处的房屋。返回 max(nums[0], nums[4]) = 2 。
+     */
+    public int minCapability(int[] nums, int k) {
+        // dp[i][j] 总共 i 家 偷 j家的 最大值
+        // dp[i][j] = max(num[j] + dp[i-2][j-1], dp[i-1][j])
+        int[][] dp = new int[nums.length][];
+
+        // 从大到小排nums里的index
+        return 0;
+    }
 
 }
