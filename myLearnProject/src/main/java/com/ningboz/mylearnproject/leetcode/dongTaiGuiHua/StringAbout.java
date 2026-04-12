@@ -5,6 +5,8 @@ import com.ningboz.mylearnproject.leetcode.code0722.Main;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class StringAbout {
     /**
@@ -254,6 +256,8 @@ public class StringAbout {
      * @return
      */
     public static int countSubstrings(String s) {
+        ReentrantLock lock = new ReentrantLock();
+        Condition condition = lock.newCondition();
         if(s == null || "".equals(s)) return 0;
         char[] chArr = s.toCharArray();
         int count = 0;
@@ -308,16 +312,83 @@ public class StringAbout {
 
         return s.substring(endIndex-maxLength+1,endIndex+1);
     }
+    private static String longestHuiwen(String s){
+        char[] chArr = s.toCharArray();
+        char[] chArrNew = new char[chArr.length*2+1];
+
+        int max = 0;
+        int index = 0;
+        for(int i=0;i<chArrNew.length;i++){
+            if(i%2==0) chArrNew[i] = '*';
+            else chArrNew[i] = chArr[i/2];
+        }
+
+        for(int i = 0 ;i<chArrNew.length;i++){
+            int startIndex,endIndex;
+            for(startIndex = i-1,endIndex = i+1;startIndex>=0&&endIndex<chArrNew.length;startIndex--,endIndex++){
+                if(chArrNew[startIndex] == chArrNew[endIndex]);
+                else break;
+            }
+
+            int curLength = (endIndex-startIndex-1)/2;
+
+            if(curLength>max){
+                index = (startIndex+1)/2;
+                max = curLength;
+            }
+
+        }
+
+        return s.substring(index,index+max);
+    }
+
+    // 标准答案
+    public static String longestPalindromeFormat(String s) {
+        if (s == null || s.length() < 2) {
+            return s;
+        }
+        int strLen = s.length();
+        int maxStart = 0;  //最长回文串的起点
+        int maxEnd = 0;    //最长回文串的终点
+        int maxLen = 1;  //最长回文串的长度
+
+        boolean[][] dp = new boolean[strLen][strLen];
+
+        for (int r = 1; r < strLen; r++) {
+            for (int l = 0; l < r; l++) {
+
+                System.out.print (String.format("当前所在节点:(%s,%s)     ",l,r));
+                System.out.print (String.format("推导前置节点:(%s,%s)     ",l+1,r-1));
+                if(r - l <= 2) System.out.print("无需推导       ");
+                System.out.println();
+                if (s.charAt(l) == s.charAt(r) && (r - l <= 2 || dp[l + 1][r - 1])) {
+                    dp[l][r] = true;
+                    if (r - l + 1 > maxLen) {
+                        maxLen = r - l + 1;
+                        maxStart = l;
+                        maxEnd = r;
+
+                    }
+                }
+
+            }
+
+        }
+        return s.substring(maxStart, maxEnd + 1);
+
+    }
 
     public static void main(String[] args) {
 //        System.out.println(levenshtein2("bd", "abcde"));
 //        System.out.println(longestCommonSubsequence("bd", "abcde"));
 //        System.out.println(isMatch2("ABCDCDEFGHI","*C?EF*I"));
 //        System.out.println(countSubstrings("aaa"));
-        System.out.println(longestPalindrome("aaa"));
+//        System.out.println(longestPalindromeFormat("abababcde"));
 //        System.out.println(isMatch2("aa","*"));
 //        System.out.println(isMatch2("","*****"));
 //        System.out.println(isMatch2("abcabczzzde","*abc???de*"));
 //        System.out.println(isMatch2("aa","a"));
+        System.out.println(longestHuiwen("abssbc"));
+        System.out.println(longestHuiwen("babad"));
     }
 }

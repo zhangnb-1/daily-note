@@ -56,4 +56,9 @@ public class IndexArrayList<T> extends ArrayList<T> {
     private String getGetterMethodName(String paramName){
         return "get" + paramName.substring(0, 1).toUpperCase() + paramName.substring(1);
     }
+
+    @Override
+    public T set(int index, T element) {
+        return super.set(index, element);
+    }
 }

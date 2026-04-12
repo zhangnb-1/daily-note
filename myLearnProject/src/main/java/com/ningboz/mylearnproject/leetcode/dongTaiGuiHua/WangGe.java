@@ -197,10 +197,64 @@ public class WangGe {
         return min;
     }
 
+    /*
+        给定一个 m x n 整数矩阵 matrix ，找出其中 最长递增路径 的长度。
+        对于每个单元格，你可以往上，下，左，右四个方向移动。
+        不能 在 对角线 方向上移动或移动到 边界外（即不允许环绕）。
+     */
+    public static int longestIncreasingPath(int[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return 0;
+        }
+
+        int rowLength = matrix.length;
+        int colLength = matrix[0].length;
+        int res = 1;
+        int[][] memo = new int[rowLength][colLength];
+        for (int i = 0; i < rowLength; i++) {
+            for (int j = 0; j < colLength; j++) {
+                res = Math.max(res,dfs(matrix,i,j,memo));
+            }
+        }
+        return res;
+    }
+
+    /**
+     * 带缓存记忆的深度搜索 由小找大
+     * @param matrix
+     * @param row
+     * @param col
+     * @param memo
+     * @return
+     */
+    private static int [][]fangxiang = new int[][]{{-1,0},{1,0},{0,-1},{0,1}};
+    private static int dfs(int[][] matrix,int row,int col,int[][] memo){
+        if(memo[row][col]!=0) return memo[row][col];
+        int res = 1;
+        int deep = 0;
+        // 上下左右
+        for (int[] ints : fangxiang) {
+            int newRow = row+ints[0];
+            int newCol = col+ints[1];
+            if(newRow<0||newRow>matrix.length-1 || newCol<0||newCol>matrix[0].length-1)
+                continue;
+            if(matrix[newRow][newCol]>matrix[row][col])
+                deep=Math.max(dfs(matrix,newRow,newCol,memo),deep);
+        }
+        res+=deep;
+        memo[row][col] = res;
+        return res;
+    }
+
     public static void main(String[] args) {
 //        System.out.println(uniquePathsDongtaiguihua(10, 10));
 //        System.out.println(uniquePathsWithObstacles(new int[][]{{1}}));
 //        System.out.println(minPathSum(new int[][]{{1,5,3},{6,3,4},{2,8,2}}));
-        System.out.println(minFallingPathSum(new int[][]{{1,5,3},{6,3,4},{2,8,2}}));
+//        System.out.println(minFallingPathSum(new int[][]{{1,5,3},{6,3,4},{2,8,2}}));
+        System.out.println(longestIncreasingPath(new int[][]{
+                {3,4,5},
+                {3,2,6},
+                {2,2,1},
+        }));
     }
 }

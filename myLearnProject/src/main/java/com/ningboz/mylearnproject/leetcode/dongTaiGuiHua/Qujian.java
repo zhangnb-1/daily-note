@@ -26,23 +26,29 @@ public class Qujian {
          *      将nums扩张2个单位 前后各填1
          *      最终结果即返回dp[0][nums.length+1]的值
          *      因为是开区间，所以当i>=j-1时dp[i][j] = 0;
-         *      i<j-1 时 dp[i][j] = max(val[i]×val[i+1]×val[j]+dp[i][i+1]+dp[i+1][j])；k = i+1
+         *      i<j-1 时 dp[i][j] = max(val[i]×val[k]×val[j]+dp[i][k]+dp[k][j])；k = i+1
           */
-        int [][] dp = new int[nums.length+2][nums.length+2];
-        for (int i = 0; i < nums.length + 2; i++) {
-            for (int j = 0; j < nums.length + 2; j++) {
-                if(i>=j-1) dp[i][j] = 0;
-                else {
+
+        int [] numArr = new int[nums.length+2];
+
+        for (int i = 0; i <numArr.length; i++) {
+            if(i == 0 || i == numArr.length-1) numArr[i] = 1;
+            else numArr[i] = nums[i-1];
+        }
+        int [][] dp = new int[numArr.length][numArr.length];
+        for (int start = dp.length-1; start >= 0; start--) {
+            for (int end = start; end < dp.length; end++) {
+                if(start<=end-2){
                     int max = Integer.MIN_VALUE;
-                    for (int k = i+1; k < j; k++) {
-                        max = Math.max(nums[i]*nums[k]*nums[j] + dp[i][k] + dp[k][j],max);
+                    for (int k = start+1; k < end; k++) {
+                        max = Math.max(numArr[start]*numArr[k]*numArr[end] + dp[start][k] + dp[k][end],max);
                     }
-                    dp[i][j] = max;
+                    dp[start][end] = max;
                 }
             }
         }
 
-        return dp[0][nums.length+1];
+        return dp[0][numArr.length-1];
     }
 
     public static void main(String[] args) {
