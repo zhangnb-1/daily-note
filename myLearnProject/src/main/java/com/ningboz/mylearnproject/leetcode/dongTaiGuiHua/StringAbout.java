@@ -378,6 +378,30 @@ public class StringAbout {
 
     }
 
+    // 获取字符串中无相同字符的最大子串的长度
+    private static int getMaxLength(String str){
+        System.out.println(str);
+        int [] indexArr = new int[]{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+        char[] chArr = str.toCharArray();
+        int startIndex = 0 ;
+        int maxLength = Integer.MIN_VALUE;
+        for (int i = 0; i < chArr.length; i++) {
+            char ch = chArr[i];
+            int lastIndex = indexArr[ch-'a'];
+
+//            System.out.println(String.format("start：  i:%s,   startIndex:%s,  lastIndex:%s,   maxLength:%s",i,startIndex,lastIndex,maxLength));
+            if(lastIndex == -1 || lastIndex<startIndex){
+                indexArr[ch-'a'] = i;
+            }else{
+                maxLength = Math.max(maxLength,i-startIndex);
+                startIndex = lastIndex+1;
+                indexArr[ch-'a'] = i;
+            }
+//            System.out.println(String.format("end：  i:%s,   startIndex:%s,  lastIndex:%s,   maxLength:%s",i,startIndex,lastIndex,maxLength));
+        }
+        return Math.max(maxLength,chArr.length-startIndex);
+    }
+
     public static void main(String[] args) {
 //        System.out.println(levenshtein2("bd", "abcde"));
 //        System.out.println(longestCommonSubsequence("bd", "abcde"));
@@ -388,7 +412,18 @@ public class StringAbout {
 //        System.out.println(isMatch2("","*****"));
 //        System.out.println(isMatch2("abcabczzzde","*abc???de*"));
 //        System.out.println(isMatch2("aa","a"));
-        System.out.println(longestHuiwen("abssbc"));
-        System.out.println(longestHuiwen("babad"));
+//        System.out.println(longestHuiwen("abssbc"));
+//        System.out.println(longestHuiwen("babad"));
+        System.out.println(getMaxLength(""));
+        System.out.println(getMaxLength("a"));
+        System.out.println(getMaxLength("aaaaaa"));
+        System.out.println(getMaxLength("abcdef"));
+        System.out.println(getMaxLength("abcda"));
+        System.out.println(getMaxLength("abccba"));
+        System.out.println(getMaxLength("abcabcbb"));
+        System.out.println(getMaxLength("abcabcabc"));
+        System.out.println(getMaxLength("abcdeafg"));
     }
+
+
 }

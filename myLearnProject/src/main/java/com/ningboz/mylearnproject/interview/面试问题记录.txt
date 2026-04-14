@@ -1,0 +1,17 @@
+兴业数金
+    finally 代码块执行顺序
+    Future如何处理异常
+    消息摘要算法
+    线程状态 以及 转换
+    redis数据类型
+
+字节od:
+    慢查询 explain 索引命中的慢查询的原因
+    kafka 消息丢失，重复消费，最终一致性的保证、幂等接口
+
+圆通：
+    oom从排查到解决的具体场景
+    kafka消息堆积的解决
+    rabbitmq rocketmq kafka的选择和原因 即三种消息队列的差异
+    全局监控系统 普罗米修斯（Prometheus）、grafana 、 skywalking(链路追踪)
+    怎么处理接口慢的问题，从监控排查到解决
