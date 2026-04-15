@@ -1,0 +1,7 @@
+代码推送 ： git
+jar包管理： maven
+应用服务内部：
+    springcloud的微服务框架
+    alibaba那套：
+        nacos:服务注册发现、配置文件管理
+        gateway 网关、路由
