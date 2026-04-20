@@ -1,0 +1,14 @@
+代码管理：git
+引用依赖管理：maven
+数据库：mysql
+缓存：redis
+消息中间件：kafka
+日志: es
+搜索：es
+定时任务：xxl-job
+自动文档生成：swagger
+自动化部署：jenkis
+容器：docker
+容器编排：k8s
+链路追踪：skywalking
+可视化监控：

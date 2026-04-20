@@ -17,6 +17,7 @@ $env:ANTHROPIC_API_KEY="YOUR_API_KEY"
 $env:ANTHROPIC_MODEL="qwen-plus"
 $env:HTTP_PROXY="http://127.0.0.1:7897"
 $env:HTTPS_PROXY="http://127.0.0.1:7897"
+
 # 如果事后影响了其他软件，比如猎豹加速器打不开，则改默认值空
 $env:HTTP_PROXY=""
 $env:HTTPS_PROXY=""
